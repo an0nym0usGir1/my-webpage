@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Payal Dongre | Portfolio</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/tsparticles@3/tsparticles.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/tsparticles-confetti@2/tsparticles.confetti.bundle.min.js"></script>
     <style>
       @keyframes fade-in {
         0% {
@@ -16,16 +18,64 @@
           transform: translateY(0);
         }
       }
+
+      @keyframes wiggle {
+        0%,
+        100% {
+          transform: rotate(-2deg);
+        }
+        50% {
+          transform: rotate(2deg);
+        }
+      }
+
       .animate-fade-in {
         animation: fade-in 1s ease-in-out forwards;
       }
+
+      .animate-wiggle {
+        display: inline-block;
+        animation: wiggle 0.6s ease-in-out infinite;
+      }
+
+      .typewriter {
+        overflow: hidden;
+        border-right: 2px solid #6b21a8;
+        white-space: nowrap;
+        animation: typing 3s steps(30, end), blink 0.75s step-end infinite;
+      }
+
+      @keyframes typing {
+        from {
+          width: 0;
+        }
+        to {
+          width: 100%;
+        }
+      }
+
+      @keyframes blink {
+        50% {
+          border-color: transparent;
+        }
+      }
     </style>
   </head>
-  <body class="bg-gradient-to-br from-purple-200 to-pink-100 min-h-screen p-8">
-    <main class="max-w-4xl mx-auto text-center">
-      <h1 class="text-5xl font-bold text-purple-800 mb-4 animate-fade-in">Payal Dongre</h1>
-      <p class="text-lg text-gray-700 mb-8">
-        Welcome to my GitHub portfolio! I'm passionate about web development, design, and creative coding.
+  <body
+    class="bg-gradient-to-br from-purple-200 to-pink-100 min-h-screen p-8 relative"
+  >
+    <canvas id="tsparticles" class="absolute inset-0 z-0 pointer-events-none"></canvas>
+
+    <main class="max-w-4xl mx-auto text-center relative z-10">
+      <h1
+        class="text-5xl font-bold text-purple-800 mb-2 animate-wiggle hover:animate-bounce transition-all duration-300"
+      >
+        Payal Dongre <span class="inline-block animate-bounce">💃</span>
+      </h1>
+      <p
+        class="text-xl text-purple-700 mb-6 typewriter mx-auto max-w-md font-mono"
+      >
+        Welcome to the sparkly world of coding!
       </p>
       <div class="flex justify-center gap-4 flex-wrap">
         <a
@@ -42,30 +92,88 @@
       </div>
 
       <section id="projects" class="mt-20">
-        <h2 class="text-3xl font-bold text-purple-700 mb-12 animate-fade-in">Projects Showcase</h2>
+        <h2 class="text-3xl font-bold text-purple-700 mb-12 animate-fade-in">
+          Projects Showcase
+        </h2>
         <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-          <div class="bg-white rounded-2xl shadow-xl p-6 hover:shadow-2xl transition">
-            <h3 class="text-xl font-semibold text-purple-800 mb-2">Portfolio Website</h3>
+          <div
+            class="bg-white rounded-2xl shadow-xl p-6 hover:shadow-2xl transition"
+          >
+            <h3 class="text-xl font-semibold text-purple-800 mb-2">
+              Portfolio Website
+            </h3>
             <p class="text-gray-600 mb-4">
-              A responsive portfolio website using React and TailwindCSS to showcase my work and skills.
+              A responsive portfolio website using React and TailwindCSS to
+              showcase my work and skills.
             </p>
-            <a href="https://github.com/payaldongre/portfolio" target="_blank" class="text-purple-600 hover:underline"
+            <a
+              href="https://github.com/payaldongre/portfolio"
+              target="_blank"
+              class="text-purple-600 hover:underline"
               >View Code</a
             >
           </div>
-          <div class="bg-white rounded-2xl shadow-xl p-6 hover:shadow-2xl transition">
-            <h3 class="text-xl font-semibold text-purple-800 mb-2">Weather App</h3>
+
+          <div
+            class="bg-white rounded-2xl shadow-xl p-6 hover:shadow-2xl transition"
+          >
+            <h3 class="text-xl font-semibold text-purple-800 mb-2">
+              Weather App
+            </h3>
             <p class="text-gray-600 mb-4">
-              A simple and elegant weather app built with HTML, CSS, JavaScript and OpenWeather API.
+              A simple and elegant weather app built with HTML, CSS, JavaScript
+              and OpenWeather API.
             </p>
-            <a href="https://github.com/payaldongre/weather-app" target="_blank" class="text-purple-600 hover:underline"
+            <a
+              href="https://github.com/payaldongre/weather-app"
+              target="_blank"
+              class="text-purple-600 hover:underline"
               >View Code</a
             >
           </div>
         </div>
       </section>
 
-      <footer class="mt-20 text-center text-gray-600">© 2025 Payal Dongre. Crafted with ❤️</footer>
+      <footer class="mt-20 text-center text-gray-600">
+        © 2025 Payal Dongre. Crafted with ❤️
+      </footer>
     </main>
+
+    <script>
+      // Cursor following stars (particles.js)
+      tsParticles.load(\"tsparticles\", {
+        background: { color: \"transparent\" },
+        fullScreen: { enable: false },
+        particles: {
+          number: { value: 60 },
+          shape: { type: \"star\" },
+          color: { value: [\"#f472b6\", \"#a78bfa\", \"#9333ea\"] },
+          size: { value: { min: 1, max: 4 } },
+          move: { enable: true, speed: 1, outModes: \"bounce\" },
+          opacity: { value: 0.8 },
+          links: { enable: true, distance: 150, color: \"#c084fc\" },
+        },
+        interactivity: {
+          events: {
+            onHover: { enable: true, mode: \"repulse\" },
+            onClick: { enable: true, mode: \"push\" },
+          },
+          modes: {
+            repulse: { distance: 100 },
+            push: { quantity: 4 },
+          },
+        },
+        detectRetina: true,
+      });
+
+      // Confetti on load
+      setTimeout(() => {
+        confetti({
+          spread: 100,
+          particleCount: 80,
+          origin: { y: 0.6 },
+        });
+      }, 500);
+    </script>
   </body>
 </html>
