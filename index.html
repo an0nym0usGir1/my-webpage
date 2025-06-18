@@ -1,13 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Payal Dongre</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Payal Dongre Funny Site</title>
   <link href="https://fonts.googleapis.com/css2?family=Comic+Neue:wght@700&display=swap" rel="stylesheet">
-  <style>
+<style>
     body {
       margin: 0;
       background: linear-gradient(to right, #fceabb, #f8b500);
@@ -105,60 +103,63 @@
     .surprise-button:hover {
       transform: scale(1.1);
     }
-  </style>
+    .shake {
+      animation: shake 0.4s ease-in-out 0s 1;
+    }
+    @keyframes shake {
+      0% { transform: translate(0px, 0px) rotate(0deg); }
+      25% { transform: translate(5px, 5px) rotate(5deg); }
+      50% { transform: translate(-5px, -5px) rotate(-5deg); }
+      75% { transform: translate(5px, -5px) rotate(5deg); }
+      100% { transform: translate(0px, 0px) rotate(0deg); }
+    }
+</style>
+
 </head>
-<body>
+<body id="mainBody">
   <h1>Hello, I'm Payal Dongre 👩‍💻</h1>
   <div class="avatar"></div>
   <div class="intro">Just a CS student with a splash of style and a lot of curiosity 🤓✨</div>
   <div class="typewriter" id="typewriter"></div>
   <div class="chat-bubble">I swear I debugged it last night 😅</div>
-  <button class="surprise-button" onclick="showSurprise()">Don't Click 😜</button>
+  <button class="surprise-button" onclick="triggerShake()">Don't Click 😜</button>
   <div class="footer">Website under construction... but vibes are always ready 😎</div>
 
   <script>
-    // Typing animation
-    const text = ["Learning to code like a pro...", "...and Google is my co-pilot 😎", "Stay tuned for cool stuff! 🚀"];
-    let i = 0, j = 0, currentText = '', isDeleting = false;
+    // Typing text animation
+    const lines = [
+      "Learning to code like a pro...",
+      "...and Google is my co-pilot 😎",
+      "Stay tuned for cool stuff! 🚀"
+    ];
+    let i = 0, j = 0, current = '', isDeleting = false;
+    const tw = document.getElementById("typewriter");
+
     function type() {
-      if (i < text.length) {
-        currentText = text[i];
-        if (isDeleting) {
-          j--;
-          if (j <= 0) {
-            isDeleting = false;
-            i++;
-          }
-        } else {
-          j++;
-          if (j === currentText.length) isDeleting = true;
-        }
-        document.getElementById("typewriter").innerText = currentText.slice(0, j);
-        setTimeout(type, isDeleting ? 60 : 100);
-      } else {
-        i = 0;
-        type();
+      current = lines[i];
+      tw.textContent = current.slice(0, j);
+      if (!isDeleting && j < current.length) {
+        j++;
+      } else if (isDeleting && j > 0) {
+        j--;
+      } else if (!isDeleting && j === current.length) {
+        isDeleting = true;
+        setTimeout(type, 1000);
+        return;
+      } else if (isDeleting && j === 0) {
+        isDeleting = false;
+        i = (i + 1) % lines.length;
       }
+      setTimeout(type, isDeleting ? 60 : 120);
     }
     type();
 
-    // Emoji rain
-    const emojis = ['🤓','💻','🎓','🧠','✨','👩‍💻','😅','📚','🐍','🖱️'];
-    function createEmoji() {
-      const emoji = document.createElement('div');
-      emoji.className = 'emoji';
-      emoji.innerText = emojis[Math.floor(Math.random() * emojis.length)];
-      emoji.style.left = Math.random() * window.innerWidth + 'px';
-      emoji.style.top = window.innerHeight + 'px';
-      emoji.style.fontSize = (Math.random() * 1.5 + 1) + 'rem';
-      document.body.appendChild(emoji);
-      setTimeout(() => document.body.removeChild(emoji), 10000);
-    }
-    setInterval(createEmoji, 500);
-
-    // Funny surprise
-    function showSurprise() {
-      alert("You clicked the forbidden button! Now Payal's code will prank you 😂");
+    // Shake function
+    function triggerShake() {
+      const body = document.getElementById("mainBody");
+      body.classList.add("shake");
+      setTimeout(() => body.classList.remove("shake"), 500);
+      alert("You clicked the forbidden button! Now the whole screen is shaking 😂");
     }
   </script>
 </body>
