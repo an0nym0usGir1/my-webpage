@@ -5,8 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Payal Dongre | Portfolio</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://cdn.jsdelivr.net/npm/tsparticles@3/tsparticles.bundle.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/tsparticles-confetti@2/tsparticles.confetti.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@tsparticles/engine@3/tsparticles.engine.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@tsparticles/basic@3/tsparticles.basic.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@tsparticles/confetti@3/tsparticles.confetti.min.js"></script>
+
     <style>
       @keyframes fade-in {
         0% {
@@ -61,9 +63,7 @@
       }
     </style>
   </head>
-  <body
-    class="bg-gradient-to-br from-purple-200 to-pink-100 min-h-screen p-8 relative"
-  >
+  <body class="bg-gradient-to-br from-purple-200 to-pink-100 min-h-screen p-8 relative">
     <canvas id="tsparticles" class="absolute inset-0 z-0 pointer-events-none"></canvas>
 
     <main class="max-w-4xl mx-auto text-center relative z-10">
@@ -84,55 +84,7 @@
           class="bg-purple-600 text-white px-6 py-3 rounded-2xl shadow-lg hover:bg-purple-700 transition-transform transform hover:scale-105"
           >GitHub</a
         >
-        <a
-          href="#projects"
-          class="bg-pink-500 text-white px-6 py-3 rounded-2xl shadow-lg hover:bg-pink-600 transition-transform transform hover:scale-105"
-          >View Projects</a
-        >
       </div>
-
-      <section id="projects" class="mt-20">
-        <h2 class="text-3xl font-bold text-purple-700 mb-12 animate-fade-in">
-          Projects Showcase
-        </h2>
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-          <div
-            class="bg-white rounded-2xl shadow-xl p-6 hover:shadow-2xl transition"
-          >
-            <h3 class="text-xl font-semibold text-purple-800 mb-2">
-              Portfolio Website
-            </h3>
-            <p class="text-gray-600 mb-4">
-              A responsive portfolio website using React and TailwindCSS to
-              showcase my work and skills.
-            </p>
-            <a
-              href="https://github.com/payaldongre/portfolio"
-              target="_blank"
-              class="text-purple-600 hover:underline"
-              >View Code</a
-            >
-          </div>
-
-          <div
-            class="bg-white rounded-2xl shadow-xl p-6 hover:shadow-2xl transition"
-          >
-            <h3 class="text-xl font-semibold text-purple-800 mb-2">
-              Weather App
-            </h3>
-            <p class="text-gray-600 mb-4">
-              A simple and elegant weather app built with HTML, CSS, JavaScript
-              and OpenWeather API.
-            </p>
-            <a
-              href="https://github.com/payaldongre/weather-app"
-              target="_blank"
-              class="text-purple-600 hover:underline"
-              >View Code</a
-            >
-          </div>
-        </div>
-      </section>
 
       <footer class="mt-20 text-center text-gray-600">
         © 2025 Payal Dongre. Crafted with ❤️
@@ -140,40 +92,53 @@
     </main>
 
     <script>
-      // Cursor following stars (particles.js)
-      tsParticles.load(\"tsparticles\", {
-        background: { color: \"transparent\" },
-        fullScreen: { enable: false },
-        particles: {
-          number: { value: 60 },
-          shape: { type: \"star\" },
-          color: { value: [\"#f472b6\", \"#a78bfa\", \"#9333ea\"] },
-          size: { value: { min: 1, max: 4 } },
-          move: { enable: true, speed: 1, outModes: \"bounce\" },
-          opacity: { value: 0.8 },
-          links: { enable: true, distance: 150, color: \"#c084fc\" },
-        },
-        interactivity: {
-          events: {
-            onHover: { enable: true, mode: \"repulse\" },
-            onClick: { enable: true, mode: \"push\" },
-          },
-          modes: {
-            repulse: { distance: 100 },
-            push: { quantity: 4 },
-          },
-        },
-        detectRetina: true,
-      });
-
-      // Confetti on load
+      // Confetti
       setTimeout(() => {
-        confetti({
+        tsParticles.confetti({
           spread: 100,
           particleCount: 80,
           origin: { y: 0.6 },
         });
       }, 500);
+
+      // Cursor-following stars
+      tsParticles
+        .load("tsparticles", {
+          fullScreen: { enable: false },
+          background: { color: "transparent" },
+          particles: {
+            number: { value: 80 },
+            color: { value: ["#f472b6", "#a78bfa", "#9333ea"] },
+            shape: { type: "star" },
+            size: { value: { min: 1, max: 4 } },
+            move: {
+              enable: true,
+              speed: 1,
+              outModes: { default: "bounce" },
+              trail: { enable: false },
+            },
+            links: {
+              enable: true,
+              color: "#9333ea",
+              distance: 150,
+              opacity: 0.4,
+            },
+            opacity: { value: 0.7 },
+          },
+          interactivity: {
+            events: {
+              onHover: { enable: true, mode: "repulse" },
+              onClick: { enable: true, mode: "push" },
+            },
+            modes: {
+              repulse: { distance: 100 },
+              push: { quantity: 4 },
+            },
+          },
+          detectRetina: true,
+        })
+        .then(() => console.log("✨ Star particle loaded!"))
+        .catch((err) => console.error("Failed to load particles", err));
     </script>
   </body>
 </html>
