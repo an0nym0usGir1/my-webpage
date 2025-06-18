@@ -1,53 +1,71 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Welcome to My GitHub Page</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      background-color: #f2f2f2;
-      margin: 0;
-      padding: 0;
-      text-align: center;
-    }
-    header {
-      background-color: #333;
-      color: white;
-      padding: 2rem;
-    }
-    main {
-      padding: 2rem;
-    }
-    footer {
-      background-color: #333;
-      color: white;
-      padding: 1rem;
-      position: fixed;
-      width: 100%;
-      bottom: 0;
-    }
-    a {
-      color: #4CAF50;
-      text-decoration: none;
-    }
-  </style>
-</head>
-<body>
-  <header>
-    <h1>Hello, I'm Payal!</h1>
-    <p>Welcome to my GitHub Page</p>
-  </header>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Payal Dongre | Portfolio</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+      @keyframes fade-in {
+        0% {
+          opacity: 0;
+          transform: translateY(20px);
+        }
+        100% {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+      .animate-fade-in {
+        animation: fade-in 1s ease-in-out forwards;
+      }
+    </style>
+  </head>
+  <body class="bg-gradient-to-br from-purple-200 to-pink-100 min-h-screen p-8">
+    <main class="max-w-4xl mx-auto text-center">
+      <h1 class="text-5xl font-bold text-purple-800 mb-4 animate-fade-in">Payal Dongre</h1>
+      <p class="text-lg text-gray-700 mb-8">
+        Welcome to my GitHub portfolio! I'm passionate about web development, design, and creative coding.
+      </p>
+      <div class="flex justify-center gap-4 flex-wrap">
+        <a
+          href="https://github.com/payaldongre"
+          target="_blank"
+          class="bg-purple-600 text-white px-6 py-3 rounded-2xl shadow-lg hover:bg-purple-700 transition-transform transform hover:scale-105"
+          >GitHub</a
+        >
+        <a
+          href="#projects"
+          class="bg-pink-500 text-white px-6 py-3 rounded-2xl shadow-lg hover:bg-pink-600 transition-transform transform hover:scale-105"
+          >View Projects</a
+        >
+      </div>
 
-  <main>
-    <h2>About This Page</h2>
-    <p>This is a simple static webpage hosted using GitHub Pages.</p>
-    <p>Visit my GitHub profile: <a href="https://github.com/your-username" target="_blank">github.com/your-username</a></p>
-  </main>
+      <section id="projects" class="mt-20">
+        <h2 class="text-3xl font-bold text-purple-700 mb-12 animate-fade-in">Projects Showcase</h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+          <div class="bg-white rounded-2xl shadow-xl p-6 hover:shadow-2xl transition">
+            <h3 class="text-xl font-semibold text-purple-800 mb-2">Portfolio Website</h3>
+            <p class="text-gray-600 mb-4">
+              A responsive portfolio website using React and TailwindCSS to showcase my work and skills.
+            </p>
+            <a href="https://github.com/payaldongre/portfolio" target="_blank" class="text-purple-600 hover:underline"
+              >View Code</a
+            >
+          </div>
+          <div class="bg-white rounded-2xl shadow-xl p-6 hover:shadow-2xl transition">
+            <h3 class="text-xl font-semibold text-purple-800 mb-2">Weather App</h3>
+            <p class="text-gray-600 mb-4">
+              A simple and elegant weather app built with HTML, CSS, JavaScript and OpenWeather API.
+            </p>
+            <a href="https://github.com/payaldongre/weather-app" target="_blank" class="text-purple-600 hover:underline"
+              >View Code</a
+            >
+          </div>
+        </div>
+      </section>
 
-  <footer>
-    &copy; 2025 Payal Dongre. All rights reserved.
-  </footer>
-</body>
+      <footer class="mt-20 text-center text-gray-600">© 2025 Payal Dongre. Crafted with ❤️</footer>
+    </main>
+  </body>
 </html>
