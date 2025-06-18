@@ -1,144 +1,165 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Payal Dongre | Portfolio</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@tsparticles/engine@3/tsparticles.engine.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@tsparticles/basic@3/tsparticles.basic.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@tsparticles/confetti@3/tsparticles.confetti.min.js"></script>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Payal Dongre</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Comic+Neue:wght@700&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      background: linear-gradient(to right, #fceabb, #f8b500);
+      font-family: 'Comic Neue', cursive;
+      overflow: hidden;
+    }
+    h1 {
+      text-align: center;
+      font-size: 3em;
+      color: #2c3e50;
+      margin-top: 2rem;
+    }
+    .avatar {
+      width: 200px;
+      height: 200px;
+      border-radius: 50%;
+      background: url('https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExenJnMmxyeGNiajA0eWc4czZqcWtnZmNwbDI2MmZxMHF6YWwwNm1hYSZlcD12MV9naWZzX3NlYXJjaCZjdD1n/SxkYad09qgVzy/giphy.gif') center/cover;
+      margin: 2rem auto;
+      animation: wobble 2s infinite;
+    }
+    @keyframes wobble {
+      0% { transform: rotate(0deg); }
+      25% { transform: rotate(5deg); }
+      50% { transform: rotate(-5deg); }
+      75% { transform: rotate(5deg); }
+      100% { transform: rotate(0deg); }
+    }
+    .intro {
+      text-align: center;
+      font-size: 1.8rem;
+      color: #34495e;
+      margin: 1rem;
+      animation: float 4s ease-in-out infinite;
+    }
+    @keyframes float {
+      0% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
+      100% { transform: translateY(0); }
+    }
+    .footer {
+      position: absolute;
+      bottom: 1rem;
+      width: 100%;
+      text-align: center;
+      font-size: 1rem;
+      color: #555;
+    }
+    .emoji {
+      position: absolute;
+      font-size: 1.5rem;
+      animation: drift 10s linear infinite;
+      pointer-events: none;
+    }
+    @keyframes drift {
+      0% { transform: translate(0, 0); opacity: 1; }
+      100% { transform: translate(-200px, -600px); opacity: 0; }
+    }
+    .typewriter {
+      width: 100%;
+      text-align: center;
+      margin-top: 1rem;
+      color: #2c3e50;
+      font-size: 1.2rem;
+      min-height: 1.5em;
+    }
+    .chat-bubble {
+      position: absolute;
+      bottom: 100px;
+      left: 20px;
+      background-color: #fff;
+      border-radius: 20px;
+      padding: 15px 20px;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+      font-size: 1rem;
+      animation: bounce 2s infinite;
+    }
+    @keyframes bounce {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
+    }
+    .surprise-button {
+      position: fixed;
+      top: 1rem;
+      right: 1rem;
+      background: #ff6f61;
+      color: white;
+      border: none;
+      padding: 10px 15px;
+      border-radius: 12px;
+      font-size: 1rem;
+      cursor: pointer;
+      box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+      transition: transform 0.2s;
+    }
+    .surprise-button:hover {
+      transform: scale(1.1);
+    }
+  </style>
+</head>
+<body>
+  <h1>Hello, I'm Payal Dongre 👩‍💻</h1>
+  <div class="avatar"></div>
+  <div class="intro">Just a CS student with a splash of style and a lot of curiosity 🤓✨</div>
+  <div class="typewriter" id="typewriter"></div>
+  <div class="chat-bubble">I swear I debugged it last night 😅</div>
+  <button class="surprise-button" onclick="showSurprise()">Don't Click 😜</button>
+  <div class="footer">Website under construction... but vibes are always ready 😎</div>
 
-    <style>
-      @keyframes fade-in {
-        0% {
-          opacity: 0;
-          transform: translateY(20px);
+  <script>
+    // Typing animation
+    const text = ["Learning to code like a pro...", "...and Google is my co-pilot 😎", "Stay tuned for cool stuff! 🚀"];
+    let i = 0, j = 0, currentText = '', isDeleting = false;
+    function type() {
+      if (i < text.length) {
+        currentText = text[i];
+        if (isDeleting) {
+          j--;
+          if (j <= 0) {
+            isDeleting = false;
+            i++;
+          }
+        } else {
+          j++;
+          if (j === currentText.length) isDeleting = true;
         }
-        100% {
-          opacity: 1;
-          transform: translateY(0);
-        }
+        document.getElementById("typewriter").innerText = currentText.slice(0, j);
+        setTimeout(type, isDeleting ? 60 : 100);
+      } else {
+        i = 0;
+        type();
       }
+    }
+    type();
 
-      @keyframes wiggle {
-        0%,
-        100% {
-          transform: rotate(-2deg);
-        }
-        50% {
-          transform: rotate(2deg);
-        }
-      }
+    // Emoji rain
+    const emojis = ['🤓','💻','🎓','🧠','✨','👩‍💻','😅','📚','🐍','🖱️'];
+    function createEmoji() {
+      const emoji = document.createElement('div');
+      emoji.className = 'emoji';
+      emoji.innerText = emojis[Math.floor(Math.random() * emojis.length)];
+      emoji.style.left = Math.random() * window.innerWidth + 'px';
+      emoji.style.top = window.innerHeight + 'px';
+      emoji.style.fontSize = (Math.random() * 1.5 + 1) + 'rem';
+      document.body.appendChild(emoji);
+      setTimeout(() => document.body.removeChild(emoji), 10000);
+    }
+    setInterval(createEmoji, 500);
 
-      .animate-fade-in {
-        animation: fade-in 1s ease-in-out forwards;
-      }
-
-      .animate-wiggle {
-        display: inline-block;
-        animation: wiggle 0.6s ease-in-out infinite;
-      }
-
-      .typewriter {
-        overflow: hidden;
-        border-right: 2px solid #6b21a8;
-        white-space: nowrap;
-        animation: typing 3s steps(30, end), blink 0.75s step-end infinite;
-      }
-
-      @keyframes typing {
-        from {
-          width: 0;
-        }
-        to {
-          width: 100%;
-        }
-      }
-
-      @keyframes blink {
-        50% {
-          border-color: transparent;
-        }
-      }
-    </style>
-  </head>
-  <body class="bg-gradient-to-br from-purple-200 to-pink-100 min-h-screen p-8 relative">
-    <canvas id="tsparticles" class="absolute inset-0 z-0 pointer-events-none"></canvas>
-
-    <main class="max-w-4xl mx-auto text-center relative z-10">
-      <h1
-        class="text-5xl font-bold text-purple-800 mb-2 animate-wiggle hover:animate-bounce transition-all duration-300"
-      >
-        Payal Dongre <span class="inline-block animate-bounce">💃</span>
-      </h1>
-      <p
-        class="text-xl text-purple-700 mb-6 typewriter mx-auto max-w-md font-mono"
-      >
-        Welcome to the sparkly world of coding!
-      </p>
-      <div class="flex justify-center gap-4 flex-wrap">
-        <a
-          href="https://github.com/payaldongre"
-          target="_blank"
-          class="bg-purple-600 text-white px-6 py-3 rounded-2xl shadow-lg hover:bg-purple-700 transition-transform transform hover:scale-105"
-          >GitHub</a
-        >
-      </div>
-
-      <footer class="mt-20 text-center text-gray-600">
-        © 2025 Payal Dongre. Crafted with ❤️
-      </footer>
-    </main>
-
-    <script>
-      // Confetti
-      setTimeout(() => {
-        tsParticles.confetti({
-          spread: 100,
-          particleCount: 80,
-          origin: { y: 0.6 },
-        });
-      }, 500);
-
-      // Cursor-following stars
-      tsParticles
-        .load("tsparticles", {
-          fullScreen: { enable: false },
-          background: { color: "transparent" },
-          particles: {
-            number: { value: 80 },
-            color: { value: ["#f472b6", "#a78bfa", "#9333ea"] },
-            shape: { type: "star" },
-            size: { value: { min: 1, max: 4 } },
-            move: {
-              enable: true,
-              speed: 1,
-              outModes: { default: "bounce" },
-              trail: { enable: false },
-            },
-            links: {
-              enable: true,
-              color: "#9333ea",
-              distance: 150,
-              opacity: 0.4,
-            },
-            opacity: { value: 0.7 },
-          },
-          interactivity: {
-            events: {
-              onHover: { enable: true, mode: "repulse" },
-              onClick: { enable: true, mode: "push" },
-            },
-            modes: {
-              repulse: { distance: 100 },
-              push: { quantity: 4 },
-            },
-          },
-          detectRetina: true,
-        })
-        .then(() => console.log("✨ Star particle loaded!"))
-        .catch((err) => console.error("Failed to load particles", err));
-    </script>
-  </body>
+    // Funny surprise
+    function showSurprise() {
+      alert("You clicked the forbidden button! Now Payal's code will prank you 😂");
+    }
+  </script>
+</body>
 </html>
