@@ -3,29 +3,103 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Payal Dongre Funny Site</title>
+  <title>Payal Dongre's Fun-tastic Site</title>
   <link href="https://fonts.googleapis.com/css2?family=Comic+Neue:wght@700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
 <style>
   body {
     margin: 0;
-    background: linear-gradient(to right, #fceabb, #f8b500);
+    background: linear-gradient(45deg, #ff9a9e, #fad0c4, #fbc2eb, #a6c1ee, #c2e9fb);
+    background-size: 400% 400%;
+    animation: gradientBG 15s ease infinite;
     font-family: 'Comic Neue', cursive;
-    overflow: hidden;
+    overflow-x: hidden;
+    min-height: 100vh;
+    position: relative;
   }
+  
+  @keyframes gradientBG {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+  }
+  
+  .floating-emoji {
+    position: absolute;
+    font-size: 2rem;
+    animation: float 8s ease-in-out infinite;
+    opacity: 0.7;
+    z-index: -1;
+  }
+  
+  @keyframes float {
+    0% { transform: translateY(100vh) rotate(0deg); }
+    100% { transform: translateY(-100px) rotate(360deg); }
+  }
+  
+  .container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    text-align: center;
+    position: relative;
+    z-index: 10;
+  }
+  
   h1 {
     text-align: center;
-    font-size: 3em;
+    font-size: 4em;
     color: #2c3e50;
-    margin-top: 2rem;
+    margin-top: 1rem;
+    text-shadow: 3px 3px 0px #ff6b6b;
+    animation: rainbow 5s infinite alternate;
   }
+  
+  @keyframes rainbow {
+    0% { color: #ff6b6b; }
+    25% { color: #4ecdc4; }
+    50% { color: #ffd166; }
+    75% { color: #6a0572; }
+    100% { color: #1a936f; }
+  }
+  
   .avatar {
     width: 200px;
     height: 200px;
     border-radius: 50%;
     background: url('https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExenJnMmxyeGNiajA0eWc4czZqcWtnZmNwbDI2MmZxMHF6YWwwNm1hYSZlcD12MV9naWZzX3NlYXJjaCZjdD1n/SxkYad09qgVzy/giphy.gif') center/cover;
     margin: 2rem auto;
-    animation: wobble 2s infinite;
+    animation: wobble 2s infinite, pulse 3s infinite;
+    border: 5px solid #fff;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+    position: relative;
+    cursor: pointer;
+    transition: transform 0.5s;
   }
+  
+  .avatar:hover {
+    transform: scale(1.1) rotate(5deg);
+  }
+  
+  .avatar::after {
+    content: "👋 Click me!";
+    position: absolute;
+    bottom: -30px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: white;
+    padding: 5px 10px;
+    border-radius: 20px;
+    font-size: 14px;
+    opacity: 0;
+    transition: opacity 0.3s;
+  }
+  
+  .avatar:hover::after {
+    opacity: 1;
+  }
+  
   @keyframes wobble {
     0% { transform: rotate(0deg); }
     25% { transform: rotate(5deg); }
@@ -33,95 +107,287 @@
     75% { transform: rotate(5deg); }
     100% { transform: rotate(0deg); }
   }
+  
+  @keyframes pulse {
+    0% { box-shadow: 0 0 0 0 rgba(255, 107, 107, 0.7); }
+    70% { box-shadow: 0 0 0 20px rgba(255, 107, 107, 0); }
+    100% { box-shadow: 0 0 0 0 rgba(255, 107, 107, 0); }
+  }
+  
   .intro {
     text-align: center;
-    font-size: 1.8rem;
+    font-size: 2rem;
     color: #34495e;
     margin: 1rem;
-    animation: float 4s ease-in-out infinite;
+    animation: floatText 4s ease-in-out infinite;
+    background: rgba(255,255,255,0.8);
+    padding: 15px;
+    border-radius: 20px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
   }
-  @keyframes float {
+  
+  @keyframes floatText {
     0% { transform: translateY(0); }
     50% { transform: translateY(-10px); }
     100% { transform: translateY(0); }
   }
+  
   .footer {
     position: absolute;
     bottom: 1rem;
     width: 100%;
     text-align: center;
-    font-size: 1rem;
+    font-size: 1.2rem;
     color: #555;
+    animation: dance 3s infinite;
+    background: rgba(255,255,255,0.7);
+    padding: 10px;
+    border-radius: 10px;
+    margin: 0 auto;
+    left: 0;
+    right: 0;
+    max-width: 500px;
   }
+  
+  @keyframes dance {
+    0%, 100% { transform: rotate(0deg); }
+    25% { transform: rotate(2deg); }
+    50% { transform: rotate(-2deg); }
+    75% { transform: rotate(2deg); }
+  }
+  
   .typewriter {
     width: 100%;
     text-align: center;
-    margin-top: 1rem;
+    margin-top: 2rem;
     color: #2c3e50;
-    font-size: 1.2rem;
+    font-size: 1.5rem;
     min-height: 1.5em;
+    background: rgba(255,255,255,0.8);
+    padding: 20px;
+    border-radius: 20px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
   }
+  
   .chat-bubble {
     position: absolute;
-    bottom: 100px;
+    bottom: 150px;
     left: 20px;
     background-color: #fff;
     border-radius: 20px;
     padding: 15px 20px;
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-    font-size: 1rem;
-    animation: bounce 2s infinite;
+    font-size: 1.2rem;
+    animation: bounce 2s infinite, colorChange 4s infinite;
+    max-width: 250px;
   }
+  
   @keyframes bounce {
     0%, 100% { transform: translateY(0); }
-    50% { transform: translateY(-10px); }
+    50% { transform: translateY(-15px); }
   }
+  
+  @keyframes colorChange {
+    0% { background-color: #fff; }
+    25% { background-color: #ffd166; }
+    50% { background-color: #06d6a0; }
+    75% { background-color: #118ab2; }
+    100% { background-color: #fff; }
+  }
+  
   .surprise-button {
     position: fixed;
     top: 1rem;
     right: 1rem;
-    background: #ff6f61;
+    background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
     color: white;
     border: none;
-    padding: 10px 15px;
-    border-radius: 12px;
-    font-size: 1rem;
+    padding: 15px 25px;
+    border-radius: 50px;
+    font-size: 1.2rem;
     cursor: pointer;
-    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
-    transition: transform 0.2s;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    transition: all 0.3s;
+    font-weight: bold;
+    animation: pulseButton 2s infinite;
   }
+  
   .surprise-button:hover {
-    transform: scale(1.1);
+    transform: scale(1.15) rotate(5deg);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
   }
+  
+  @keyframes pulseButton {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+    100% { transform: scale(1); }
+  }
+  
   .shake {
     animation: shakeAnim 1.2s cubic-bezier(0.36, 0.07, 0.19, 0.97) both;
   }
+  
   @keyframes shakeAnim {
     10%, 90% { transform: translate3d(-5px, 0, 0); }
     20%, 80% { transform: translate3d(5px, 0, 0); }
     30%, 50%, 70% { transform: translate3d(-10px, 0, 0); }
     40%, 60% { transform: translate3d(10px, 0, 0); }
   }
+  
+  .skills {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 15px;
+    margin: 30px 0;
+  }
+  
+  .skill {
+    background: white;
+    padding: 10px 20px;
+    border-radius: 30px;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+    animation: popIn 0.5s ease-out;
+    animation-fill-mode: backwards;
+    transition: all 0.3s;
+    font-weight: bold;
+  }
+  
+  .skill:hover {
+    transform: translateY(-5px) rotate(3deg);
+    box-shadow: 0 8px 15px rgba(0,0,0,0.2);
+  }
+  
+  @keyframes popIn {
+    0% { transform: scale(0); opacity: 0; }
+    80% { transform: scale(1.1); }
+    100% { transform: scale(1); opacity: 1; }
+  }
+  
+  .counter {
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-top: 20px;
+    color: #ff6b6b;
+    background: white;
+    display: inline-block;
+    padding: 10px 20px;
+    border-radius: 50px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+  }
+  
+  .social-icons {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin-top: 30px;
+  }
+  
+  .social-icon {
+    font-size: 2.5rem;
+    color: #2c3e50;
+    transition: all 0.3s;
+    animation: spin 5s infinite linear;
+    animation-play-state: paused;
+  }
+  
+  .social-icon:hover {
+    transform: scale(1.2) rotate(360deg);
+    color: #ff6b6b;
+    animation-play-state: running;
+  }
+  
+  @keyframes spin {
+    to { transform: rotate(360deg); }
+  }
+  
+  @media (max-width: 600px) {
+    h1 { font-size: 2.5rem; }
+    .intro { font-size: 1.5rem; }
+    .chat-bubble { position: static; margin: 20px auto; }
+  }
 </style>
-<audio id="shakeSound" src="https://www.soundjay.com/button/beep-07.wav" preload="auto"></audio>
-
-
 </head>
 <body id="mainBody">
-  <h1>Hello, I'm Payal Dongre 👩‍💻</h1>
-  <div class="avatar"></div>
-  <div class="intro">Just a CS student with a splash of style and a lot of curiosity 🤓✨</div>
-  <div class="typewriter" id="typewriter"></div>
-  <div class="chat-bubble">I swear I debugged it last night 😅</div>
-  <button class="surprise-button" onclick="triggerShake()">Don't Click 😜</button>
-  <div class="footer">Website under construction... but vibes are always ready 😎</div>
+  <div class="container">
+    <h1>👋 Hey, I'm Payal Dongre!</h1>
+    
+    <div class="avatar" id="avatar"></div>
+    
+    <div class="intro">
+      <i class="fas fa-laptop-code"></i> CS Student by Day • <i class="fas fa-moon"></i> Debugger by Night • <i class="fas fa-coffee"></i> Coffee-powered Genius!
+    </div>
+    
+    <div class="chat-bubble" id="chatBubble">
+      <i class="fas fa-comment-dots"></i> I swear I debugged it last night... it worked! 😅
+    </div>
+    
+    <div class="typewriter" id="typewriter"></div>
+    
+    <div class="skills">
+      <div class="skill" style="animation-delay: 0.1s">Coding</div>
+      <div class="skill" style="animation-delay: 0.3s">Debugging</div>
+      <div class="skill" style="animation-delay: 0.5s">Coffee Making</div>
+      <div class="skill" style="animation-delay: 0.7s">Stack Overflow</div>
+      <div class="skill" style="animation-delay: 0.9s">Ctrl+C / Ctrl+V</div>
+      <div class="skill" style="animation-delay: 1.1s">Sarcasm</div>
+    </div>
+    
+    <div class="counter">
+      <i class="fas fa-bug"></i> Bugs fixed today: <span id="bugCount">0</span>
+    </div>
+    
+    <div class="social-icons">
+      <a href="#" class="social-icon"><i class="fab fa-github"></i></a>
+      <a href="#" class="social-icon"><i class="fab fa-linkedin"></i></a>
+      <a href="#" class="social-icon"><i class="fab fa-twitter"></i></a>
+      <a href="#" class="social-icon"><i class="fab fa-instagram"></i></a>
+    </div>
+    
+    <button class="surprise-button" onclick="triggerShake()">
+      <i class="fas fa-bolt"></i> Secret Button! 
+    </button>
+    
+    <div class="footer">
+      Website under construction... but the party has already started! 🎉
+    </div>
+  </div>
 
   <script>
+    // Create floating emojis
+    const emojis = ['💻', '🚀', '🎮', '🍕', '☕', '🎨', '🎵', '📱', '💡', '🎯', '🌈', '✨'];
+    function createFloatingEmoji() {
+      const emoji = document.createElement('div');
+      emoji.className = 'floating-emoji';
+      emoji.innerHTML = emojis[Math.floor(Math.random() * emojis.length)];
+      emoji.style.left = Math.random() * 100 + 'vw';
+      emoji.style.animationDuration = (Math.random() * 10 + 5) + 's';
+      emoji.style.animationDelay = Math.random() * 5 + 's';
+      document.body.appendChild(emoji);
+      
+      // Remove emoji after animation completes
+      setTimeout(() => {
+        emoji.remove();
+      }, 15000);
+    }
+    
+    // Create multiple emojis
+    for (let i = 0; i < 20; i++) {
+      setTimeout(createFloatingEmoji, i * 500);
+    }
+    
     // Typing text animation
     const lines = [
       "Learning to code like a pro...",
-      "...and Google is my co-pilot 😎",
-      "Stay tuned for cool stuff! 🚀"
+      "Google is my co-pilot 😎",
+      "Stay tuned for cool stuff! 🚀",
+      "99 little bugs in the code...",
+      "99 little bugs...",
+      "Take one down, patch it around...",
+      "127 bugs in the code! 🤦‍♀️",
+      "I speak fluent JavaScript and sarcasm!",
+      "My code doesn't have bugs, just unexpected features!",
+      "Life is short, smile while you still have teeth! 😁"
     ];
     let i = 0, j = 0, current = '', isDeleting = false;
     const tw = document.getElementById("typewriter");
@@ -135,26 +401,92 @@
         j--;
       } else if (!isDeleting && j === current.length) {
         isDeleting = true;
-        setTimeout(type, 1000);
+        setTimeout(type, 1500);
         return;
       } else if (isDeleting && j === 0) {
         isDeleting = false;
         i = (i + 1) % lines.length;
       }
-      setTimeout(type, isDeleting ? 60 : 120);
+      setTimeout(type, isDeleting ? 50 : 120);
     }
     type();
-
-    // Shake function
-  function triggerShake() {
-    const body = document.getElementById("mainBody");
-    const audio = document.getElementById("shakeSound");
-    body.classList.add("shake");
-    audio.play();  // 👈 sound bajega
-    setTimeout(() => body.classList.remove("shake"), 1000);
-    alert("You clicked the forbidden button! Now the whole screen is shaking 😂");
-}
-
+    
+    // Shake function with confetti
+    function triggerShake() {
+      const body = document.getElementById("mainBody");
+      body.classList.add("shake");
+      
+      // Confetti effect
+      confetti({
+        particleCount: 150,
+        spread: 70,
+        origin: { y: 0.6 }
+      });
+      
+      // Update bug counter
+      const bugCount = document.getElementById("bugCount");
+      bugCount.textContent = parseInt(bugCount.textContent) + 1;
+      
+      // Change chat bubble text
+      const bubbleTexts = [
+        "Woah! That was fun! 😂",
+        "You found the secret button!",
+        "More bugs fixed? Awesome! 🐛",
+        "I think we broke something...",
+        "Let's do that again!",
+        "Confetti for everyone! 🎉",
+        "Did you see that? Magic! ✨",
+        "Coding is more fun with confetti!"
+      ];
+      document.getElementById("chatBubble").innerHTML = 
+        `<i class="fas fa-comment-dots"></i> ${bubbleTexts[Math.floor(Math.random() * bubbleTexts.length)]}`;
+      
+      // Add floating emojis
+      for(let i=0; i<10; i++) {
+        setTimeout(createFloatingEmoji, i * 200);
+      }
+      
+      setTimeout(() => body.classList.remove("shake"), 1200);
+    }
+    
+    // Avatar click effect
+    document.getElementById("avatar").addEventListener("click", function() {
+      this.style.animation = "none";
+      setTimeout(() => {
+        this.style.animation = "wobble 2s infinite, pulse 3s infinite";
+      }, 10);
+      
+      // Confetti effect
+      confetti({
+        particleCount: 100,
+        spread: 60,
+        origin: { y: 0.5 }
+      });
+      
+      // Change intro text
+      const intros = [
+        "Just a CS student with a splash of style!",
+        "Debugging is my cardio!",
+        "I turn coffee into code!",
+        "Professional problem solver!",
+        "My code has fewer bugs than Windows!",
+        "I speak fluent binary!",
+        "Certified keyboard warrior!",
+        "I put the 'fun' in function!",
+        "Ctrl+Z is my best friend!"
+      ];
+      document.querySelector(".intro").textContent = intros[Math.floor(Math.random() * intros.length)];
+    });
+    
+    // Randomly change chat bubble position
+    setInterval(() => {
+      const chatBubble = document.getElementById("chatBubble");
+      const maxX = window.innerWidth - 300;
+      const maxY = window.innerHeight - 300;
+      
+      chatBubble.style.left = Math.max(20, Math.random() * maxX) + 'px';
+      chatBubble.style.bottom = Math.max(150, Math.random() * maxY) + 'px';
+    }, 5000);
   </script>
 </body>
 </html>
